@@ -51,12 +51,7 @@ func NewClient(options ...Option) *Client {
 	return c
 }
 
-// newRequest creates an API request.
 func (c *Client) newRequest(s string) (*http.Request, error) {
-    return c.Request(s)
-}
-
-func (c *Client) Request(s string) (*http.Request, error) {
 	rel, err := url.Parse(c.basePath + s)
 	if err != nil {
 		return nil, err

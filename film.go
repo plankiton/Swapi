@@ -4,7 +4,7 @@ import "fmt"
 
 // A Film is an single film.
 type Film struct {
-	title         string   `json:"title,omitempty"`
+	Title         string   `json:"title,omitempty"`
 	EpisodeID     int      `json:"episode_id,omitempty"`
 	OpeningCrawl  string   `json:"opening_crawl,omitempty"`
 	Director      string   `json:"director,omitempty"`

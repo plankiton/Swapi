@@ -4,26 +4,21 @@ import "fmt"
 
 // A Species is a type of person or character within the Star Wars Universe.
 type Species struct {
-	Name            string   `json:"name"`
-	Classification  string   `json:"classification"`
-	Designation     string   `json:"designation"`
-	AverageHeight   string   `json:"average_height"`
-	SkinColors      string   `json:"skin_colors"`
-	HairColors      string   `json:"hair_colors"`
-	EyeColors       string   `json:"eye_colors"`
-	AverageLifespan string   `json:"average_lifespan"`
-	Homeworld       string   `json:"homeworld"`
-	Language        string   `json:"language"`
-	PeopleURLs      []string `json:"people"`
-	FilmURLs        []string `json:"films"`
-	Created         string   `json:"created"`
-	Edited          string   `json:"edited"`
-	URL             string   `json:"url"`
+	Name            string   `json:"name,omitempty"`
+	Classification  string   `json:"classification,omitempty"`
+	Designation     string   `json:"designation,omitempty"`
+	AverageHeight   string   `json:"average_height,omitempty"`
+	SkinColors      string   `json:"skin_colors,omitempty"`
+	HairColors      string   `json:"hair_colors,omitempty"`
+	EyeColors       string   `json:"eye_colors,omitempty"`
+	AverageLifespan string   `json:"average_lifespan,omitempty"`
+	Homeworld       string   `json:"homeworld,omitempty"`
+	Language        string   `json:"language,omitempty"`
 }
 
 // Species retrieves the species with the given id
-func (c *Client) Species(id int) (Species, error) {
-	req, err := c.newRequest(fmt.Sprintf("species/%d", id))
+func (c *Client) Species(id string) (Species, error) {
+	req, err := c.newRequest(fmt.Sprintf("species/%s", id))
 	if err != nil {
 		return Species{}, err
 	}

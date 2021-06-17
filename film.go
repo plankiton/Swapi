@@ -4,24 +4,21 @@ import "fmt"
 
 // A Film is an single film.
 type Film struct {
-	Title         string   `json:"title"`
-	EpisodeID     int      `json:"episode_id"`
-	OpeningCrawl  string   `json:"opening_crawl"`
-	Director      string   `json:"director"`
-	Producer      string   `json:"producer"`
-	CharacterURLs []string `json:"characters"`
-	PlanetURLs    []string `json:"planets"`
-	StarshipURLs  []string `json:"starships"`
-	VehicleURLs   []string `json:"vehicles"`
-	SpeciesURLs   []string `json:"species"`
-	Created       string   `json:"created"`
-	Edited        string   `json:"edited"`
-	URL           string   `json:"url"`
+	title         string   `json:"title,omitempty"`
+	EpisodeID     int      `json:"episode_id,omitempty"`
+	OpeningCrawl  string   `json:"opening_crawl,omitempty"`
+	Director      string   `json:"director,omitempty"`
+	Producer      string   `json:"producer,omitempty"`
+	Character     Person   `json:"characters,omitempty"`
+	Planet        Planet   `json:"planets,omitempty"`
+	Starship      Starship `json:"starships,omitempty"`
+	Vehicle       Vehicle  `json:"vehicles,omitempty"`
+	Species       Species  `json:"species,omitempty"`
 }
 
 // Film retrieves the film with the given id
-func (c *Client) Film(id int) (Film, error) {
-	req, err := c.newRequest(fmt.Sprintf("films/%d", id))
+func (c *Client) Film(id string) (Film, error) {
+	req, err := c.newRequest(fmt.Sprintf("films/%s", id))
 	if err != nil {
 		return Film{}, err
 	}

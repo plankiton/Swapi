@@ -4,27 +4,20 @@ import "fmt"
 
 // A Person is an individual person or character within the Star Wars universe.
 type Person struct {
-	Name         string   `json:"name"`
-	Height       string   `json:"height"`
-	Mass         string   `json:"mass"`
-	HairColor    string   `json:"hair_color"`
-	SkinColor    string   `json:"skin_color"`
-	EyeColor     string   `json:"eye_color"`
-	BirthYear    string   `json:"birth_year"`
-	Gender       string   `json:"gender"`
-	Homeworld    string   `json:"homeworld"`
-	FilmURLs     []string `json:"films"`
-	SpeciesURLs  []string `json:"species"`
-	VehicleURLs  []string `json:"vehicles"`
-	StarshipURLs []string `json:"starships"`
-	Created      string   `json:"created"`
-	Edited       string   `json:"edited"`
-	URL          string   `json:"url"`
+	Name         string   `json:"name,omitempty"`
+	Height       string   `json:"height,omitempty"`
+	Mass         string   `json:"mass,omitempty"`
+	HairColor    string   `json:"hair_color,omitempty"`
+	SkinColor    string   `json:"skin_color,omitempty"`
+	EyeColor     string   `json:"eye_color,omitempty"`
+	BirthYear    string   `json:"birth_year,omitempty"`
+	Gender       string   `json:"gender,omitempty"`
+	Homeworld    string   `json:"homeworld,omitempty"`
 }
 
 // Person retrieves the person with the given id
-func (c *Client) Person(id int) (Person, error) {
-	req, err := c.newRequest(fmt.Sprintf("people/%d", id))
+func (c *Client) Person(id string) (Person, error) {
+	req, err := c.newRequest(fmt.Sprintf("people/%s", id))
 	if err != nil {
 		return Person{}, err
 	}
